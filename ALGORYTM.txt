@@ -4,15 +4,14 @@
 #  3. Pobrać z pliku do jednej listy wartości współczynników
 #  4. Pobrać z pliku do drugiej listy wartości stojące po prawych stronach równań
 #  5. Przypiszmy pobrane wartości współczynników do macierzy A
-#  6. Przypiszmy pobrane wartości wartości stojących po prawej stronie równań do tablicy B
-#  7. Podzielmy macierz A na macierze L, D i U, gdzie macierz L będzie zawierać wszystkie wartości macierzy A z pod
+#  6. Sprawdzamy warunek zbieżności: macierz A jest macierzą dominującą, tzn wartości bezwzględne elementów na
+      głównej przekątnej są większe od sumy wartości bezwzględnych pozostałych elementów w wierszach
+#  7. Przypiszmy pobrane wartości wartości stojących po prawej stronie równań do tablicy B
+#  8. Podzielmy macierz A na macierze L, D i U, gdzie macierz L będzie zawierać wszystkie wartości macierzy A z pod
 #     przekątnej, D będzie zawierać wartości z przekątnej i U wartości z nad przekątnej
-#  8. Obliczamy macierz N = 1/D, czyli każda wartość w macierzy N stanowi 1/D wartości z macierzy D
-#  9. Obliczamy macierz M = -N(L+U), czyli najpierw dodajemy do siebie każdą wartość mcierzy L i U, a następnie mnożymy
+#  9. Obliczamy macierz N = 1/D, czyli każda wartość w macierzy N stanowi 1/D wartości z macierzy D
+#  10. Obliczamy macierz M = -N(L+U), czyli najpierw dodajemy do siebie każdą wartość mcierzy L i U, a następnie mnożymy
 #     otrzymaną macierz przez przeciwne wartości macierzy N
-# 10. Sprawdzamy warunek zbieżności: jeśli promil spektralny M jest mniejszy od jeden (promień spektralny to największa
-#     wartość bezwzględna z wartości własnej macierzy). W przeciwnym wypadku nie dla każdego przybliżenia początkowego
-#     otrzymamy rozwiązanie układu.
 # 11. Pytanie użytkownika o liczbę iteracji lub dokładność
 # 12. Rozpoczynamy obliczenia od wektora 0, czyli tablicy n wartości 0
 # 13. Obliczamy poszczególne wartości rozwiązań xi według wzoru: xi = Mx + Nb

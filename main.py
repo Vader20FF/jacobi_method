@@ -1,6 +1,5 @@
 from pobieranie_wartosci import pobieranie_wartosci
-# from przypisywanie_wartosci import przypisywanie_wartosci
-# from obliczanie import obliczanie
+from obliczanie import obliczanie
 from sys import exit as zamknijProgram
 import numpy as np
 
@@ -8,11 +7,16 @@ A, B, N, M, L, D, U, x1, x2 = [[]], [], [], [[]], [], [], [], [], []
 n = 0
 
 
+def zakonczenie():
+    global x1
+    print(x1)
+
+
 def rozwiniecie():
     global n
-    global A, B, L, D, U
+    global A, B, N, M, L, D, U, x1, x2
 
-    # ustaiwenie wartosci macierzy A i B jako odpowiednio wartosci wspolczynnikow po lewo i po prawo od znaku rownosci
+    # ustawianie wartosci macierzy A i B jako odpowiednio wartosci wspolczynnikow po lewo i po prawo od znaku rownosci
     # z pobranych rownan
     A, B = pobieranie_wartosci(n)
 
@@ -29,6 +33,41 @@ def rozwiniecie():
     # jako drugi parametr funkcji ustawiamy ktora przekotna chcemy zaczac zerowanie macierzy
     U = np.tril(A, -1)
 
+    # tworzymy macierz N
+    N = np.zeros((n, n))
+    row, col = np.diag_indices_from(N)
+    N[row, col] = (np.diagonal(D))**(-1)
+
+    # tworzymy macierz M
+    M = np.matmul(-N, (np.add(L, U)))
+
+    liczba_iteracji = None
+    epsilon = None
+    print("""
+Wybierz kryterium zakonczenia algorytmu:
+    1. osiagniecie zadanej dokladnosci obliczen
+    2. wykonanie okreslonej liczby iteracji """)
+    warunekKonca = int(input("""
+Wybór: """))
+
+    if warunekKonca == 1:
+        valid = False
+        while not valid:
+            epsilon = abs(float(input("""
+    Podaj epsilon: """)))
+            if isinstance(epsilon, float):
+                valid = True
+    elif warunekKonca == 2:
+        valid = False
+        while not valid:
+            liczba_iteracji = int(input("""
+    Podaj liczbe iteracji: """))
+            if liczba_iteracji > 0 and isinstance(liczba_iteracji, int):
+                valid = True
+
+    x1 = obliczanie(x2, N, B, M, x1, liczba_iteracji, epsilon)
+
+    zakonczenie()
 
 
 def wstep():
@@ -38,14 +77,13 @@ def wstep():
     print("Lukasz Janiszewski, Maciej Kubis")
     print("------------------------------------------------------------------")
     print()
-    print("""
-Wybierz opcje:
+    print("""Wybierz opcje:
 1. Rozpocznij program
 2. Zakończ program""")
     wyborUzytkownika = 0
     while wyborUzytkownika != 1 or wyborUzytkownika != 2:
         wyborUzytkownika = int(input("""
-        Wybór: """))
+Wybór: """))
         if wyborUzytkownika == 1:
             while n < 1:
                 n = int(input("""
