@@ -15,7 +15,11 @@ def rozwiniecie():
 
     # ustawianie wartosci macierzy A i B jako odpowiednio wartosci wspolczynnikow po lewo i po prawo od znaku rownosci
     # z pobranych rownan
-    A, B, n = pobieranie_wartosci()
+    temp_list = pobieranie_wartosci()
+    if not temp_list:
+        wstep()
+    else:
+        A, B, n = temp_list
 
     print()
     print("Aktualnie rozwiazywany jest uklad o wspolczynnikach:")

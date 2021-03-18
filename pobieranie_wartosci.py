@@ -1,5 +1,4 @@
 import numpy as np
-from sys import exit as zamknijProgram
 
 
 def pobieranie_wartosci():
@@ -8,9 +7,9 @@ def pobieranie_wartosci():
 a, b, c, d, e, f, g, h, i, j""")
     wybor_uzytkownika = str(input("""
     Wybór: """))
-    if wybor_uzytkownika not in 'abcdefghij' and wybor_uzytkownika not in 'template':
+    if wybor_uzytkownika not in 'abcdefghij' and wybor_uzytkownika != 'template':
         print("""Wybrano nieprawidlowa opcje!""")
-        while wybor_uzytkownika not in 'abcdefghij' and wybor_uzytkownika not in 'template':
+        while wybor_uzytkownika not in 'abcdefghij' and wybor_uzytkownika != 'template':
             wybor_uzytkownika = int(input("""
     Wybór: """))
     with open(f"przyklady/{wybor_uzytkownika}.txt", mode="r") as plik:
@@ -23,6 +22,7 @@ a, b, c, d, e, f, g, h, i, j""")
     if suma_wartosci_przekatnej <= suma_wartosci_z_nad_przekatnej + suma_wartosci_z_pod_przekatnej:
         print()
         print("Nie zostal spelniony warunek zbieznosci metody Jacobiego dla wybranej macierzy!!!")
-        zamknijProgram()
+        print()
+        return None
     macierz_do_B = np.loadtxt(f"przyklady/{wybor_uzytkownika}.txt", usecols=range(n, n+1), dtype=float)
     return [macierz_do_A, macierz_do_B, n]
