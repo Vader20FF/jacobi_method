@@ -17,6 +17,14 @@ def rozwiniecie():
     # z pobranych rownan
     A, B, n = pobieranie_wartosci()
 
+    print()
+    print("Aktualnie rozwiazywany jest uklad o wspolczynnikach:")
+    print(A)
+    print("i wartosciach po prawej stronie rownosci:")
+    temp_B = B.reshape(1, n)
+    print(np.rot90(temp_B, k=3))
+    print()
+
     # ustawianie wartosci macierzy D jako wartosci przekatnej macierzy A
     D = np.zeros((n, n))
     row, col = np.diag_indices_from(D)
@@ -40,8 +48,7 @@ def rozwiniecie():
 
     liczba_iteracji = None
     epsilon = None
-    print("""
-Wybierz kryterium zakonczenia algorytmu:
+    print("""Wybierz kryterium zakonczenia algorytmu:
     1. osiagniecie zadanej dokladnosci obliczen
     2. wykonanie okreslonej liczby iteracji """)
     warunekKonca = int(input("""
