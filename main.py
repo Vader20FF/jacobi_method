@@ -11,11 +11,11 @@ def zakonczenie(wartosc_konczaca):
     print()
 
 
-def rozwiniecie(n):
+def rozwiniecie():
 
     # ustawianie wartosci macierzy A i B jako odpowiednio wartosci wspolczynnikow po lewo i po prawo od znaku rownosci
     # z pobranych rownan
-    A, B = pobieranie_wartosci(n)
+    A, B, n = pobieranie_wartosci()
 
     # ustawianie wartosci macierzy D jako wartosci przekatnej macierzy A
     D = np.zeros((n, n))
@@ -69,7 +69,6 @@ Wybierz kryterium zakonczenia algorytmu:
 
 
 def wstep():
-    n = 0
     while(True):
         print("------------------------------------------------------------------")
         print("Program do rozwiazywania ukladow rownan liniowych metoda Jacobiego")
@@ -82,12 +81,7 @@ def wstep():
         wyborUzytkownika = int(input("""
     Wybór: """))
         if wyborUzytkownika == 1:
-            while n < 1:
-                n = int(input("""
-    Podaj liczbe rownan w ukladzie: """))
-                if n < 1:
-                    print("Podaj liczbe rownan w ukladzie wieksza lub rowna 1!")
-            rozwiniecie(n)
+            rozwiniecie()
         elif wyborUzytkownika == 2:
             zamknijProgram()
         else:
