@@ -3,18 +3,15 @@ from obliczanie import obliczanie
 from sys import exit as zamknijProgram
 import numpy as np
 
-A, B, N, M, L, D, U, x1, x2 = [[]], [], [], [[]], [], [], [], [], []
-n = 0
+
+def zakonczenie(wartosc_konczaca):
+    print()
+    print(wartosc_konczaca)
+    print()
+    print()
 
 
-def zakonczenie():
-    global x1
-    print(x1)
-
-
-def rozwiniecie():
-    global n
-    global A, B, N, M, L, D, U, x1, x2
+def rozwiniecie(n):
 
     # ustawianie wartosci macierzy A i B jako odpowiednio wartosci wspolczynnikow po lewo i po prawo od znaku rownosci
     # z pobranych rownan
@@ -48,7 +45,7 @@ Wybierz kryterium zakonczenia algorytmu:
     1. osiagniecie zadanej dokladnosci obliczen
     2. wykonanie okreslonej liczby iteracji """)
     warunekKonca = int(input("""
-Wybór: """))
+    Wybór: """))
 
     if warunekKonca == 1:
         valid = False
@@ -65,37 +62,36 @@ Wybór: """))
             if liczba_iteracji > 0 and isinstance(liczba_iteracji, int):
                 valid = True
 
-    x1 = obliczanie(x2, N, B, M, x1, liczba_iteracji, epsilon)
+    x1 = np.zeros(n)
+    wartosc_konczaca = obliczanie(N, B, M, x1, liczba_iteracji, epsilon)
 
-    zakonczenie()
+    zakonczenie(wartosc_konczaca)
 
 
 def wstep():
-    global n
-    print("------------------------------------------------------------------")
-    print("Program do rozwiazywania ukladow rownan liniowych metoda Jacobiego")
-    print("Lukasz Janiszewski, Maciej Kubis")
-    print("------------------------------------------------------------------")
-    print()
-    print("""Wybierz opcje:
+    n = 0
+    while(True):
+        print("------------------------------------------------------------------")
+        print("Program do rozwiazywania ukladow rownan liniowych metoda Jacobiego")
+        print("Lukasz Janiszewski, Maciej Kubis")
+        print("------------------------------------------------------------------")
+        print()
+        print("""Wybierz opcje:
 1. Rozpocznij program
 2. Zakończ program""")
-    wyborUzytkownika = 0
-    while wyborUzytkownika != 1 or wyborUzytkownika != 2:
         wyborUzytkownika = int(input("""
-Wybór: """))
+    Wybór: """))
         if wyborUzytkownika == 1:
             while n < 1:
                 n = int(input("""
-Podaj liczbe rownan w ukladzie: """))
+    Podaj liczbe rownan w ukladzie: """))
                 if n < 1:
                     print("Podaj liczbe rownan w ukladzie wieksza lub rowna 1!")
-            rozwiniecie()
+            rozwiniecie(n)
         elif wyborUzytkownika == 2:
             zamknijProgram()
         else:
             print("""Wybrano nieprawidlowa opcje!""")
-
 
 
 wstep()
