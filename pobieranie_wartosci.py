@@ -10,7 +10,7 @@ a, b, c, d, e, f, g, h, i, j""")
     if wybor_uzytkownika not in 'abcdefghij' and wybor_uzytkownika != 'template':
         print("""Wybrano nieprawidlowa opcje!""")
         while wybor_uzytkownika not in 'abcdefghij' and wybor_uzytkownika != 'template':
-            wybor_uzytkownika = int(input("""
+            wybor_uzytkownika = str(input("""
     Wybór: """))
     with open(f"przyklady/{wybor_uzytkownika}.txt", mode="r") as plik:
         n = sum(1 for linia in plik)

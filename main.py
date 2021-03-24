@@ -2,6 +2,7 @@ from pobieranie_wartosci import pobieranie_wartosci
 from obliczanie import obliczanie
 from sys import exit as zamknijProgram
 import numpy as np
+from PIL import Image
 
 
 def zakonczenie(wartosc_konczaca):
@@ -98,5 +99,8 @@ def wstep():
         else:
             print("""Wybrano nieprawidlowa opcje!""")
 
+
+im = Image.open('przyklady/przyklady.png')
+im.show()
 
 wstep()
